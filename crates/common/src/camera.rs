@@ -42,6 +42,7 @@ impl From<&str> for CameraID {
     fn from(s: &str) -> Self { Self(s.to_string()) }
 }
 
+// Impl: Special one for AsRef
 impl AsRef<str> for CameraID {
     ///  Generic borrowing pattern => use: When you want a function to accept anything that can be referenced as &str
     fn as_ref(&self) -> &str { &self.0 }
@@ -60,5 +61,37 @@ pub struct CameraInfo {
 impl CameraInfo {
     pub fn new(manufacturer: String, model: String, firmware_version: String, serial_number: String) -> Self {
         CameraInfo { manufacturer, model, firmware_version, serial_number, hardware_id: None }
+    }
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+/// Struct: CamCapibilities
+///
+///
+pub struct CameraCapibilities {
+    pub pan_tilt_zoom: bool,
+    pub events: bool, // IMP: events Support
+    pub audio: bool,
+    pub imaging: bool, // Image Settings (brightness, contrast)
+    pub media: bool,
+    pub ptz_absolute: Option<bool>,
+    pub ptz_relative: Option<bool>,
+    pub ptz_continous: Option<bool>,
+    pub event_types: Option<Vec<String>>,
+}
+
+impl CameraCapibilities {
+    pub fn default() -> Self {
+        CameraCapibilities {
+            pan_tilt_zoom: false,
+            events: true,
+            audio: true,
+            imaging: true,
+            media: true,
+            ptz_absolute: Some(false),
+            ptz_relative: Some(false),
+            ptz_continous: Some(false),
+            event_types: Some(None),
+        };
     }
 }
