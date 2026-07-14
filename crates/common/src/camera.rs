@@ -64,7 +64,7 @@ impl CameraInfo {
     }
 }
 
-#[derive(Clone, Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Default, Deserialize, Serialize, PartialEq)]
 /// Struct: CamCapibilities
 ///
 ///
@@ -81,17 +81,6 @@ pub struct CameraCapibilities {
 }
 
 impl CameraCapibilities {
-    pub fn default() -> Self {
-        CameraCapibilities {
-            pan_tilt_zoom: false,
-            events: true,
-            audio: true,
-            imaging: true,
-            media: true,
-            ptz_absolute: Some(false),
-            ptz_relative: Some(false),
-            ptz_continous: Some(false),
-            event_types: Some(None),
-        };
-    }
+    /// should return everyting false for default
+    pub fn new() -> Self { Self::default() }
 }
