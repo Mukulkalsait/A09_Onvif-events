@@ -1,6 +1,4 @@
-use std::fmt::format;
-
-use common::CameraID;
+use common::cameraid::CameraID;
 use pretty_assertions::assert_eq;
 
 #[test]
