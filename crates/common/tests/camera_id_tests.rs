@@ -1,4 +1,4 @@
-use common::cameraid::CameraID;
+use common::camera::CameraID;
 use pretty_assertions::assert_eq;
 
 #[test]
