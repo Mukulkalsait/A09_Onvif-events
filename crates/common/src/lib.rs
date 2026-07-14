@@ -1,1 +1,1 @@
-pub mod cameraid;
+pub mod camera;

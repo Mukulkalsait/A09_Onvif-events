@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 use std::fmt::{self};
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+/// Struct: CameraID
 /// unique camera id
 /// PartialEq, and Eq for comparision.
 pub struct CameraID(pub String);
@@ -44,4 +45,20 @@ impl From<&str> for CameraID {
 impl AsRef<str> for CameraID {
     ///  Generic borrowing pattern => use: When you want a function to accept anything that can be referenced as &str
     fn as_ref(&self) -> &str { &self.0 }
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+/// Struct: CameraInfo
+pub struct CameraInfo {
+    pub manufacturer: String,
+    pub model: String,
+    pub firmware_version: String,
+    pub serial_number: String,
+    pub hardware_id: Option<String>,
+}
+
+impl CameraInfo {
+    pub fn new(manufacturer: String, model: String, firmware_version: String, serial_number: String) -> Self {
+        CameraInfo { manufacturer, model, firmware_version, serial_number, hardware_id: None }
+    }
 }
