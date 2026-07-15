@@ -11,7 +11,7 @@ impl CameraID {
     /// # Camera ID COnstrctor
     /// ```
     /// let id = common::CameraID::new("cameraxyz");
-    /// assert_eq!(ia.as_str(),"cameraxyz" );
+    /// assert_eq!(id.as_str(),"cameraxyz" );
     /// ```
     pub fn new(id: impl Into<String>) -> Self { Self(id.into()) }
 
