@@ -148,5 +148,9 @@ impl SoapRequestBuilder {
     pub fn build(self) -> Result<SoapRequest, String> {
         let service = self.service.ok_or("Service is required.")?;
         let operation = self.operation.ok_or("Operation is required.")?;
+
+        let payload =  self.payload.unwrap_or_else(|| {
+            format!("<{} xmlns=\">")
+        })
     }
 }
