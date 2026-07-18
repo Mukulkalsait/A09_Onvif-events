@@ -149,8 +149,8 @@ impl SoapRequestBuilder {
         let service = self.service.ok_or("Service is required.")?;
         let operation = self.operation.ok_or("Operation is required.")?;
 
-        let payload =  self.payload.unwrap_or_else(|| {
-            format!("<{} xmlns=\">")
-        })
+        let payload = self.payload.unwrap_or_else(|| format!("<{} xmlns=\"{}\"/>", operation, service.namespaces()));
+
+        Ok(SoapRequest { service, operation, payload, action: self.action, message_id: self.message_id })
     }
 }
