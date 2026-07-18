@@ -13,7 +13,8 @@ impl CameraID {
     /// let id = common::CameraID::new("cameraxyz");
     /// assert_eq!(id.as_str(),"cameraxyz" );
     /// ```
-    pub fn new(id: impl Into<String>) -> Self { Self(id.into()) }
+    pub fn new(id: impl Into<String>) -> Self { Self(id.into()) } // Shorthand of billow function 
+    pub fn newx<T: Into<String>>(id: T) -> Self { Self(id.into()) } // same as above function.
 
     /// # Return Camera-ID as &str slice
     /// use: When you need to read the value, e.g., passing to a function that needs &str
